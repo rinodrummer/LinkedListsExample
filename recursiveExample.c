@@ -1,10 +1,11 @@
-// Iterative Linked List Example: https://pastebin.com/dNn6fr4J
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
 #include <string.h>
 
-#define DEBUG 1
+#define DEBUG 1 // If 1, creates a new student without asking to the user the info;
+
+//typedef enum {false, true} bool;
 
 struct Studente {
 	unsigned int mat;
@@ -20,10 +21,11 @@ struct ListNode {
 struct ListNode *createNode(struct Studente *stud); // Creates a node for the linked list;
 struct ListNode *deleteNode(struct ListNode *node); // Deletes all the dynamic memory allocated in the node;
 
-struct ListNode *addNodeInPos(struct ListNode *head, struct ListNode *node, int pos); // TODO
+struct ListNode *addNodeInPos(struct ListNode *head, struct ListNode *node, unsigned int pos);
 struct ListNode *addNodeBefore(struct ListNode *head, struct ListNode *beforeIt, struct ListNode *node); // TODO
 struct ListNode *addNodeAfter(struct ListNode *head, struct ListNode *afterIt, struct ListNode *node); // TODO
 struct ListNode *addNodeBetween(struct ListNode *head, struct ListNode *aIt, struct ListNode *bIt, struct ListNode *node); // TODO
+struct ListNode *addNodeByMat(struct ListNode *orderedHead, struct ListNode *node, unsigned int isAsc); // TODO - Adds the node in order by Studente.mat (ASC || DESC);
 
 struct ListNode *unshift(struct ListNode *head, struct ListNode *node); // Adds the node at the start of the linked list;
 struct ListNode *push(struct ListNode *head, struct ListNode *node); // Adds the node at the end of the linked list;
@@ -31,13 +33,14 @@ struct ListNode *push(struct ListNode *head, struct ListNode *node); // Adds the
 struct ListNode *shift(struct ListNode *head); // Removes the current head of the list, shifting it to the next;
 struct ListNode *pop(struct ListNode *head); // Removes the current tail of the list, shifting it to the previous;
 
-struct ListNode *getNodeByPos(struct ListNode *head, int pos); // TODO
-struct ListNode *getNodeByStud(struct ListNode *head, struct Studente *stud); // TODO
+struct ListNode *getNodeByPos(struct ListNode *head, unsigned int pos);
+struct ListNode *getNodeByStud(struct ListNode *head, struct Studente *stud, struct ListNode **node); // TODO
 
-struct ListNode *replaceNode(struct ListNode *head, struct ListNode *oldNode, struct ListNode *newNode);
+struct ListNode *swapNode(struct ListNode *head, struct ListNode *oldNode, struct ListNode *newNode); // TODO
+struct ListNode *replaceNode(struct ListNode *head, struct ListNode *oldNode, struct ListNode *newNode); // TODO
 
 struct ListNode *removeNode(struct ListNode *head, struct ListNode *node); // Definitively removes the node from the list;
-struct ListNode *removeNodeByPos(struct ListNode *head, int pos); // TODO
+struct ListNode *removeNodeByPos(struct ListNode *head, unsigned int pos); // TODO
 struct ListNode *removeNodeByStud(struct ListNode *head, struct Studente *stud); // TODO
 
 struct ListNode *deleteList(struct ListNode *head); // Removes all the linked list;
@@ -60,7 +63,7 @@ int main(void) {
 
     printf("Prima lista:\n");
     printStudentsList(studList);
-    //printf("\nN° studenti presenti: %d;\n", getLenght(studList));
+    printf("\nN° studenti presenti: %d;\n", getLenght(studList));
 
     //printf("\n===============================================\n");
 
@@ -72,10 +75,10 @@ int main(void) {
 
     clearScreen();
 
-    studList = replaceNode(studList, studList->next, createNode(createStudent(0)));
+    studList = addNodeInPos(studList, createNode(createStudent(0)), getLenght(studList) - 1);
 
-    printf("Prima lista:\n");
-    //printStudentsList(studList);
+    printf("Lista aggiornata:\n");
+    printStudentsList(studList);
     printf("\nN° studenti presenti: %d;\n", getLenght(studList));
 
     /*studList = deleteList(studList);
@@ -114,15 +117,35 @@ struct ListNode *deleteNode(struct ListNode *node) {
 	return next;
 }
 
-struct ListNode *addNodeInPos(struct ListNode *head, struct ListNode *node, int pos) {
+struct ListNode *addNodeInPos(struct ListNode *head, struct ListNode *node, unsigned int pos) {
+    if (pos == 0) {
+        if (head == NULL) {
+            head = node;
+        }
+        else {
+            head = swapNode(head, head, node);
+        }
+    }
+    else {
+        head->next = addNodeInPos(head->next, node, pos - 1);
+    }
+
     return head;
 }
 
 struct ListNode *addNodeBefore(struct ListNode *head, struct ListNode *beforeIt, struct ListNode *node) {
+	if (head != NULL) {
+		if (head->next == beforeIt) {
+			
+		}
+	}
+
     return head;
 }
 
 struct ListNode *addNodeAfter(struct ListNode *head, struct ListNode *afterIt, struct ListNode *node) {
+
+
     return head;
 }
 
@@ -162,22 +185,48 @@ struct ListNode *pop(struct ListNode *head) {
     return head;
 }
 
-struct ListNode *getNodeByPos(struct ListNode *head, int pos) {
-    printf("%d >\n", pos);
-    if (head != NULL) {
-        printStudentFromNode(head);
+struct ListNode *getNodeByPos(struct ListNode *head, unsigned int pos) {
+    //printf("%d >\n", pos);
 
-        clearScreen();
+    if (head != NULL) {
+        //printStudentFromNode(head);
+        //clearScreen();
 
         if (pos > 0) {
-            head = getNodeByPos(head->next, --pos);
+            head = getNodeByPos(head->next, pos - 1);
         }
     }
 
     return head;
 }
 
-struct ListNode *getNodeByStud(struct ListNode *head, struct Studente *stud) {
+struct ListNode *getNodeByStud(struct ListNode *head, struct Studente *stud, struct ListNode **node) {
+    if (head != NULL) {
+        if (head->stud == stud) {
+            *node = head;
+        }
+        else {
+            head->next = getNodeByStud(head->next, stud, node);
+        }
+    }
+
+    return head;
+}
+
+struct ListNode *swapNode(struct ListNode *head, struct ListNode *oldNode, struct ListNode *newNode) {
+    if (head != NULL && oldNode != NULL) {
+        if (head != oldNode) {
+            head->next = swapNode(head->next, oldNode, newNode);
+        }
+        else {
+            newNode->next = oldNode;
+            head = newNode;
+        }
+    }
+    else {
+        head = newNode;
+    }
+
     return head;
 }
 
@@ -227,8 +276,6 @@ int getLenght(struct ListNode *head) {
     int l = 0;
 
     if (head != NULL) {
-        printStudentFromNode(head);
-
         l = 1 + getLenght(head->next);
     }
 
