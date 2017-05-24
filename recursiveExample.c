@@ -35,6 +35,7 @@ struct ListNode *pop(struct ListNode *head); // Removes the current tail of the 
 
 struct ListNode *getNodeByPos(struct ListNode *head, unsigned int pos);
 struct ListNode *getNodeByStud(struct ListNode *head, struct Studente *stud, struct ListNode **node); // TODO
+struct ListNode *getNodeByMat(struct ListNode *head, unsigned int mat, struct ListNode **node); // TODO
 
 struct ListNode *swapNode(struct ListNode *head, struct ListNode *oldNode, struct ListNode *newNode); // TODO
 struct ListNode *replaceNode(struct ListNode *head, struct ListNode *oldNode, struct ListNode *newNode); // TODO
@@ -166,6 +167,8 @@ struct ListNode *addNodeAfter(struct ListNode *head, struct ListNode *afterIt, s
     return head;
 }
 
+// addNodeByMat()
+
 struct ListNode *unshift(struct ListNode *head, struct ListNode *node) {
     node->next = head;
 
@@ -229,6 +232,14 @@ struct ListNode *getNodeByStud(struct ListNode *head, struct Studente *stud, str
 }
 
 struct ListNode *getNodeByMat(struct ListNode *head, unsigned int mat, struct ListNode **node) {
+	if (head != NULL) {
+		if (head->stud->mat == mat) {
+			*node = head;
+		}
+		else {
+			head->next = getNodeByMat(head->next, mat, node);
+		}
+	}
 
     return head;
 }
