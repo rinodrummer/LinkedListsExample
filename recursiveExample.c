@@ -18,6 +18,7 @@ struct ListNode {
 	struct ListNode *next;
 };
 
+// Function prototypes:
 struct ListNode *createNode(struct Studente *stud); // Creates a node for the linked list;
 struct ListNode *deleteNode(struct ListNode *node); // Deletes all the dynamic memory allocated in the node;
 
@@ -98,6 +99,8 @@ int main(void) {
 	return 0;
 }
 
+// Functions implementations:
+//	Base node interaction functions (2):
 struct ListNode *createNode(struct Studente *stud) {
 	struct ListNode *node = (struct ListNode *) malloc(sizeof(struct ListNode));
 
@@ -116,6 +119,7 @@ struct ListNode *deleteNode(struct ListNode *node) {
 	return next;
 }
 
+// 	Adding node functions (3 dynamic position, 2 static position):
 struct ListNode *addNodeInPos(struct ListNode *head, struct ListNode *node, unsigned int pos) {
     if (pos == 0) {
         if (head == NULL) {
@@ -179,6 +183,7 @@ struct ListNode *push(struct ListNode *head, struct ListNode *node) {
     return head;
 }
 
+// 	Removing node functions (2):
 struct ListNode *shift(struct ListNode *head) {
     return deleteNode(head);
 }
@@ -194,6 +199,7 @@ struct ListNode *pop(struct ListNode *head) {
     return head;
 }
 
+// 	Retrivering node functions (3):
 struct ListNode *getNodeByPos(struct ListNode *head, unsigned int pos) {
     //printf("%d >\n", pos);
 
@@ -222,6 +228,12 @@ struct ListNode *getNodeByStud(struct ListNode *head, struct Studente *stud, str
     return head;
 }
 
+struct ListNode *getNodeByMat(struct ListNode *head, unsigned int mat, struct ListNode **node) {
+
+    return head;
+}
+
+// 	Moving and removing node functions (3):
 struct ListNode *swapNode(struct ListNode *head, struct ListNode *oldNode, struct ListNode *newNode) {
     if (head != NULL && oldNode != NULL) {
         if (head != oldNode) {
@@ -273,6 +285,7 @@ struct ListNode *removeNode(struct ListNode *head, struct ListNode *node) {
     return head;
 }
 
+// Linked list related functions (2):
 struct ListNode *deleteList(struct ListNode *head) {
     if (head != NULL) {
         head->next = deleteList(head->next);
@@ -291,6 +304,7 @@ int getLenght(struct ListNode *head) {
     return l;
 }
 
+// Student related functions (4):
 struct Studente *createStudent(unsigned int print) {
     static unsigned int ID = 1;
 
@@ -366,6 +380,7 @@ void printStudentsList(struct ListNode *head) {
     return;
 }
 
+// Utility functions (1):
 void clearScreen() {
     printf("\nPremere un tasto per continuare...");
     getchar();
