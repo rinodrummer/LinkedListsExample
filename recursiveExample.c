@@ -34,15 +34,16 @@ struct ListNode *shift(struct ListNode *head); // Removes the current head of th
 struct ListNode *pop(struct ListNode *head); // Removes the current tail of the list, shifting it to the previous;
 
 struct ListNode *getNodeByPos(struct ListNode *head, unsigned int pos);
-struct ListNode *getNodeByStud(struct ListNode *head, struct Studente *stud, struct ListNode **node); // TODO
-struct ListNode *getNodeByMat(struct ListNode *head, unsigned int mat, struct ListNode **node); // TODO
+struct ListNode *getNodeByStud(struct ListNode *head, struct Studente *stud, struct ListNode **node);
+struct ListNode *getNodeByMat(struct ListNode *head, unsigned int mat, struct ListNode **node);
 
-struct ListNode *swapNode(struct ListNode *head, struct ListNode *oldNode, struct ListNode *newNode); // TODO
-struct ListNode *replaceNode(struct ListNode *head, struct ListNode *oldNode, struct ListNode *newNode); // TODO
+struct ListNode *swapNode(struct ListNode *head, struct ListNode *oldNode, struct ListNode *newNode);
+struct ListNode *replaceNode(struct ListNode *head, struct ListNode *oldNode, struct ListNode *newNode);
 
 struct ListNode *removeNode(struct ListNode *head, struct ListNode *node); // Definitively removes the node from the list;
 struct ListNode *removeNodeByPos(struct ListNode *head, unsigned int pos); // TODO
 struct ListNode *removeNodeByStud(struct ListNode *head, struct Studente *stud); // TODO
+struct ListNode *removeNodeByMat(struct ListNode *head, unsigned int mat); // TODO
 
 struct ListNode *deleteList(struct ListNode *head); // Removes all the linked list;
 
@@ -244,7 +245,7 @@ struct ListNode *getNodeByMat(struct ListNode *head, unsigned int mat, struct Li
     return head;
 }
 
-// 	Moving and removing node functions (3):
+// 	Moving node functions (2):
 struct ListNode *swapNode(struct ListNode *head, struct ListNode *oldNode, struct ListNode *newNode) {
     if (head != NULL && oldNode != NULL) {
         if (head != oldNode) {
@@ -281,6 +282,7 @@ struct ListNode *replaceNode(struct ListNode *head, struct ListNode *oldNode, st
     return head;
 }
 
+// 	Removing node functions (4):
 struct ListNode *removeNode(struct ListNode *head, struct ListNode *node) {
     if (head != NULL && node != NULL) {
         if (head == node) {
@@ -295,6 +297,10 @@ struct ListNode *removeNode(struct ListNode *head, struct ListNode *node) {
 
     return head;
 }
+
+/*struct ListNode *removeNodeByPos() {}
+struct ListNode *removeNodeByStud() {}
+struct ListNode *removeNodeByMat() {} */
 
 // Linked list related functions (2):
 struct ListNode *deleteList(struct ListNode *head) {
