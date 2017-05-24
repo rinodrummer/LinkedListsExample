@@ -168,7 +168,25 @@ struct ListNode *addNodeAfter(struct ListNode *head, struct ListNode *afterIt, s
     return head;
 }
 
-// addNodeByMat()
+struct ListNode *addNodeByMat(struct ListNode *head, struct ListNode *node, unsigned int mat) {
+	struct Studente *stud;
+
+	if (head != NULL && head->stud != NULL) {
+		stud = head->stud;
+
+		if (stud->mat == mat) {
+			head = addNodeAfter(head, head, node);
+		}
+		else {
+			head->next = addNodeByMat(head->next, node, mat);
+		}
+	}
+	else {
+		head = node;
+	}
+
+	return head;
+}
 
 struct ListNode *unshift(struct ListNode *head, struct ListNode *node) {
     node->next = head;
