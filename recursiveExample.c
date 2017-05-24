@@ -22,8 +22,8 @@ struct ListNode *createNode(struct Studente *stud); // Creates a node for the li
 struct ListNode *deleteNode(struct ListNode *node); // Deletes all the dynamic memory allocated in the node;
 
 struct ListNode *addNodeInPos(struct ListNode *head, struct ListNode *node, unsigned int pos);
-struct ListNode *addNodeBefore(struct ListNode *head, struct ListNode *beforeIt, struct ListNode *node); // TODO
-struct ListNode *addNodeAfter(struct ListNode *head, struct ListNode *afterIt, struct ListNode *node); // TODO
+struct ListNode *addNodeBefore(struct ListNode *head, struct ListNode *beforeIt, struct ListNode *node);
+struct ListNode *addNodeAfter(struct ListNode *head, struct ListNode *afterIt, struct ListNode *node);
 struct ListNode *addNodeBetween(struct ListNode *head, struct ListNode *aIt, struct ListNode *bIt, struct ListNode *node); // TODO
 struct ListNode *addNodeByMat(struct ListNode *orderedHead, struct ListNode *node, unsigned int isAsc); // TODO - Adds the node in order by Studente.mat (ASC || DESC);
 
@@ -136,15 +136,29 @@ struct ListNode *addNodeInPos(struct ListNode *head, struct ListNode *node, unsi
 struct ListNode *addNodeBefore(struct ListNode *head, struct ListNode *beforeIt, struct ListNode *node) {
 	if (head != NULL) {
 		if (head->next == beforeIt) {
-			
+			head = swapNode(head, head, node);
 		}
+		else {
+			head->next = addNodeBefore(head, beforeIt, node);
+		}
+	}
+	else {
+		head = node;
 	}
 
     return head;
 }
 
 struct ListNode *addNodeAfter(struct ListNode *head, struct ListNode *afterIt, struct ListNode *node) {
-
+	if (head != NULL) {
+		if (head == afterIt) {
+			node->next = head->next;
+			head->next = node;
+		}
+		else {
+			head->next = addNodeAfter(head->next, afterIt, node);
+		}
+	}
 
     return head;
 }
