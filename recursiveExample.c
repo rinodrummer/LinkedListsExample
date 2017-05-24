@@ -24,7 +24,6 @@ struct ListNode *deleteNode(struct ListNode *node); // Deletes all the dynamic m
 struct ListNode *addNodeInPos(struct ListNode *head, struct ListNode *node, unsigned int pos);
 struct ListNode *addNodeBefore(struct ListNode *head, struct ListNode *beforeIt, struct ListNode *node);
 struct ListNode *addNodeAfter(struct ListNode *head, struct ListNode *afterIt, struct ListNode *node);
-struct ListNode *addNodeBetween(struct ListNode *head, struct ListNode *aIt, struct ListNode *bIt, struct ListNode *node); // TODO
 struct ListNode *addNodeByMat(struct ListNode *orderedHead, struct ListNode *node, unsigned int isAsc); // TODO - Adds the node in order by Studente.mat (ASC || DESC);
 
 struct ListNode *unshift(struct ListNode *head, struct ListNode *node); // Adds the node at the start of the linked list;
@@ -160,10 +159,6 @@ struct ListNode *addNodeAfter(struct ListNode *head, struct ListNode *afterIt, s
 		}
 	}
 
-    return head;
-}
-
-struct ListNode *addNodeBetween(struct ListNode *head, struct ListNode *aIt, struct ListNode *bIt, struct ListNode *node) {
     return head;
 }
 
