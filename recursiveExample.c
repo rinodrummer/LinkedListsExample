@@ -25,7 +25,7 @@ struct ListNode *deleteNode(struct ListNode *node); // Deletes all the dynamic m
 struct ListNode *addNodeInPos(struct ListNode *head, struct ListNode *node, unsigned int pos);
 struct ListNode *addNodeBefore(struct ListNode *head, struct ListNode *beforeIt, struct ListNode *node);
 struct ListNode *addNodeAfter(struct ListNode *head, struct ListNode *afterIt, struct ListNode *node);
-struct ListNode *addNodeByMat(struct ListNode *orderedHead, struct ListNode *node, unsigned int isAsc); // TODO - Adds the node in order by Studente.mat (ASC || DESC);
+struct ListNode *addNodeByMat(struct ListNode *orderedHead, struct ListNode *node, unsigned int isAsc); // Adds the node in order by Studente.mat (ASC || DESC);
 
 struct ListNode *unshift(struct ListNode *head, struct ListNode *node); // Adds the node at the start of the linked list;
 struct ListNode *push(struct ListNode *head, struct ListNode *node); // Adds the node at the end of the linked list;
@@ -316,9 +316,26 @@ struct ListNode *removeNode(struct ListNode *head, struct ListNode *node) {
     return head;
 }
 
-/*struct ListNode *removeNodeByPos() {}
-struct ListNode *removeNodeByStud() {}
-struct ListNode *removeNodeByMat() {} */
+struct ListNode *removeNodeByPos(struct ListNode *head, unsigned int pos) {
+	if (head != NULL) {
+		if (pos == 0) {
+			head = removeNode(head, head);
+		}
+		else {
+			head->next = removeNodeByPos(head->next, --pos);
+		}
+	}
+
+	return head;
+}
+
+struct ListNode *removeNodeByStud(struct ListNode *head, struct Studente *stud) {
+	return head;
+}
+
+struct ListNode *removeNodeByMat(struct ListNode *head, unsigned int mat) {
+	return head;
+}
 
 // Linked list related functions (2):
 struct ListNode *deleteList(struct ListNode *head) {
