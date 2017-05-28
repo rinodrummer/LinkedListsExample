@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <malloc.h>
 #include <string.h>
 
 #define DEBUG 1 // If 1, creates a new student without asking to the user the info;
