@@ -1,3 +1,6 @@
+# Error messages file
+compiling_error.txt
+
 # Prerequisites
 *.d
 
