@@ -66,7 +66,8 @@ struct Number *iterativeOrderByMinK(struct Number *head, int k) {
             curr = prev->next;
         }
         else {
-
+            prev = curr;
+            curr = curr->next;
         }
     }
 
@@ -76,7 +77,7 @@ struct Number *iterativeOrderByMinK(struct Number *head, int k) {
 struct Number *recursiveOrderByMinK(struct Number *head, int k) {
     if (head != NULL) {
         if (head->n < k) {
-            head = unshift(head, head);
+            // TODO
         }
         else {
             head->next = recursiveOrderByMinK(head->next, k);
