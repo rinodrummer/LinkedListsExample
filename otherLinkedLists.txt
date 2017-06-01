@@ -1,6 +1,6 @@
 #Linked List
     Svantaggi:
-        - Necessità del precedente;
+        - Necessità del nodo precedente;
         - Aggiornamento della testa;
 
 
@@ -9,7 +9,7 @@
     - Liste circolari (con nodo fittizio);
 
 #Liste doppiamente collegate
-    ATTENZIONE! Non risolvono il problema della testa!
+    ATTENZIONE! Non risolvono al meglio il problema del nodo precedente!
 
     struct DoubleListNode {
         struct Data *data;
@@ -21,17 +21,36 @@
 
     struct DoubleListNode *insInOrdine(struct DoubleListNode *head, Data *d) {
         struct DoubleListNode *curr = head;
+        struct DoubleListNode *prev = head;
 
-        if (head != NULL) {
+        struct DoubleListNode *node = NULL;
+
+        if (head == NULL) {
             head = createNode(d);
         }
         else {
             while (curr != NULL && (d->val > curr->data->val)) {
+                prev = curr;
                 curr = curr->next;
             }
-                if (curr == NULL) {
-                    //
+
+            tmp = createNode(d);
+
+            if (prev == curr) {
+                tmp->next = head;
+                head->prev = tmp;
+            }
+            else {
+                tmp->next = curr;
+                tmp->prev = prev;
+
+                prev->next = tmp;
+
+                if (curr != NULL) {
+                    curr->prev = tmp:
                 }
             }
         }
+
+        return head;
     }
