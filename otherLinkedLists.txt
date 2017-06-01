@@ -54,3 +54,21 @@
 
         return head;
     }
+
+Liste circolari (con nodo fittizio)
+    struct DoubleListNode {
+        // TODO copy the upper struct;
+    };
+
+    struct DoubleListNode *createList() {
+        struct DoubleListNode *tmp = (struct) malloc(); // TODO
+
+        tmp->next = tmp;
+        tmp->prev = tmp;
+
+        return tmp;
+    }
+
+    int main(void) {
+        struct DoubleListNode *head;
+    }
