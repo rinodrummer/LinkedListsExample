@@ -1,0 +1,18 @@
+#Linked List
+    Svantaggi:
+        - Necessità del precedente;
+        - Aggiornamento della testa;
+
+
+#Altre implementazioni
+    - Liste doppiamente collegate;
+    - Liste circolari (con nodo fittizio);
+
+#Liste doppiamente collegate
+    struct DoubleListNode {
+        struct Data *d;
+        struct DoubleListNode *prev;
+        struct DoubleListNode *next;
+    }
+
+    
