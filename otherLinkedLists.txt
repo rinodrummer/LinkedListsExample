@@ -9,10 +9,29 @@
     - Liste circolari (con nodo fittizio);
 
 #Liste doppiamente collegate
+    ATTENZIONE! Non risolvono il problema della testa!
+
     struct DoubleListNode {
-        struct Data *d;
+        struct Data *data;
         struct DoubleListNode *prev;
         struct DoubleListNode *next;
     }
 
-    
+    // createNode(Data *d);
+
+    struct DoubleListNode *insInOrdine(struct DoubleListNode *head, Data *d) {
+        struct DoubleListNode *curr = head;
+
+        if (head != NULL) {
+            head = createNode(d);
+        }
+        else {
+            while (curr != NULL && (d->val > curr->data->val)) {
+                curr = curr->next;
+            }
+                if (curr == NULL) {
+                    //
+                }
+            }
+        }
+    }
