@@ -23,7 +23,7 @@ struct ListNode *deleteNode(struct ListNode *node) {
     struct ListNode *next = node->next;
 
 	free(node->stud);
-    free(node);
+	free(node);
 
 	return next;
 }
