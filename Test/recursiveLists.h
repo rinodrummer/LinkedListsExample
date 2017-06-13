@@ -1,6 +1,12 @@
 #ifndef REC_LISTS_H
 #define REC_LISTS_H
 
+struct Studente {
+	unsigned int mat;
+	char nome[32];
+	char cognome[32];
+};
+
 struct ListNode {
 	struct Studente *stud;
 	struct ListNode *next;
@@ -36,5 +42,12 @@ struct ListNode *removeNodeByMat(struct ListNode *head, unsigned int mat); // TO
 struct ListNode *deleteList(struct ListNode *head); // Removes all the linked list;
 
 int getLenght(struct ListNode *head); // Returns the lenght of the list;
+
+// Student:
+struct Studente *createStudent(unsigned int print); // Creates a student;
+
+void printStudent(struct Studente *stud);
+void printStudentFromNode(struct ListNode *node);
+void printStudentsList(struct ListNode *head); // Prints the students of the linked list;
 
 #endif
