@@ -8,7 +8,7 @@
     - Liste doppiamente collegate;
     - Liste circolari (con nodo fittizio);
 
-# Liste doppiamente collegate
+## Liste doppiamente collegate
     ATTENZIONE! Non risolvono al meglio il problema del nodo precedente!
 
     struct DoubleListNode {
@@ -55,7 +55,7 @@
         return head;
     }
 
-# Liste circolari (con nodo fittizio)
+## Liste circolari (con nodo fittizio)
     struct DoubleListNode {
         // TODO copy the upper struct;
     };
