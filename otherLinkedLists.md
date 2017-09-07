@@ -1,12 +1,12 @@
 # Linked List
-    Svantaggi:
-        - Necessità del nodo precedente;
-        - Aggiornamento della testa;
+Svantaggi:
+- Necessità del nodo precedente;
+- Aggiornamento della testa;
 
 
 # Altre implementazioni
-    - Liste doppiamente collegate;
-    - Liste circolari (con nodo fittizio);
+- Liste doppiamente collegate;
+- Liste circolari (con nodo fittizio);
 
 ## Liste doppiamente collegate
     ATTENZIONE! Non risolvono al meglio il problema del nodo precedente!
