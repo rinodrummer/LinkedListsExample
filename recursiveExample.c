@@ -341,7 +341,7 @@ struct ListNode *deleteList(struct ListNode *head) {
     if (head != NULL) {
         head->next = deleteList(head->next);
 	
-	free();
+		free(head);
     }
 
     return NULL;
