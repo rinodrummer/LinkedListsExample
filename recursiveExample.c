@@ -340,6 +340,8 @@ struct ListNode *removeNodeByMat(struct ListNode *head, unsigned int mat) {
 struct ListNode *deleteList(struct ListNode *head) {
     if (head != NULL) {
         head->next = deleteList(head->next);
+	
+	free();
     }
 
     return NULL;
